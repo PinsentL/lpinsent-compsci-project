@@ -3,10 +3,31 @@ namespace SpriteKind {
     export const Food2 = SpriteKind.create()
     export const Food3 = SpriteKind.create()
     export const Food4 = SpriteKind.create()
+    export const Food5 = SpriteKind.create()
+    export const Food6 = SpriteKind.create()
 }
 namespace myTiles {
     //% blockIdentity=images._tile
     export const tile0 = img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+    //% blockIdentity=images._tile
+    export const tile1 = img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -46,7 +67,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food3, function (sprite, otherSp
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `,
-            [myTiles.tile0,sprites.builtin.brick,sprites.dungeon.hazardLava1],
+            [myTiles.tile0,sprites.builtin.brick,sprites.dungeon.hazardLava1,myTiles.tile1],
             TileScale.Sixteen
         ))
     mySprite.setPosition(20, 20)
@@ -96,7 +117,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `,
-            [myTiles.tile0,sprites.builtin.brick],
+            [myTiles.tile0,sprites.builtin.brick,myTiles.tile1],
             TileScale.Sixteen
         ))
     mySprite.setPosition(20, 20)
@@ -147,7 +168,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food1, function (sprite, otherSp
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `,
-            [myTiles.tile0,sprites.builtin.brick],
+            [myTiles.tile0,sprites.builtin.brick,myTiles.tile1],
             TileScale.Sixteen
         ))
     mySprite.setPosition(20, 20)
@@ -173,6 +194,54 @@ e e b e c c e e e e e c e b e e
     info.changeScoreBy(1)
     mySprite3.destroy()
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food5, function (sprite, otherSprite) {
+    info.startCountdown(15)
+    tiles.setTilemap(tiles.createTilemap(
+            hex`1000100000000000000000000000000000000000000000000000000000000000000000000303030303030303030303030300000000000000000000000000000003000000000000000000000000000000030000000000030303030303030303030300000000000300000000000000000000000000000003000000000000000000000000000000030303030303030303030300000000000000000000000000000003000000000000000000000000000000030300000000030303030303030303030300000000000300000000000000000000000000000003030303030303030303030000000000000000000000000000000000000000000000000000000000000000000000`,
+            img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`,
+            [myTiles.tile0,myTiles.tile1,sprites.builtin.brick,sprites.dungeon.hazardLava1],
+            TileScale.Sixteen
+        ))
+    mySprite.setPosition(20, 20)
+    mySprite8 = sprites.create(img`
+. . . . c c c b b b b b . . . . 
+. . c c b 4 4 4 4 4 4 b b b . . 
+. c c 4 4 4 4 4 5 4 4 4 4 b c . 
+. e 4 4 4 4 4 4 4 4 4 5 4 4 e . 
+e b 4 5 4 4 5 4 4 4 4 4 4 4 b c 
+e b 4 4 4 4 4 4 4 4 4 4 5 4 4 e 
+e b b 4 4 4 4 4 4 4 4 4 4 4 b e 
+. e b 4 4 4 4 4 5 4 4 4 4 b e . 
+8 7 e e b 4 4 4 4 4 4 b e e 6 8 
+8 7 2 e e e e e e e e e e 2 7 8 
+e 6 6 2 2 2 2 2 2 2 2 2 2 6 c e 
+e c 6 7 6 6 7 7 7 6 6 7 6 c c e 
+e b e 8 8 c c 8 8 c c c 8 e b e 
+e e b e c c e e e e e c e b e e 
+. e e b b 4 4 4 4 4 4 4 4 e e . 
+. . . c c c c c e e e e e . . . 
+`, SpriteKind.Food6)
+    mySprite8.setPosition(20, 60)
+    info.changeScoreBy(1)
+    mySprite7.destroy()
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food2, function (sprite, otherSprite) {
     tiles.setTilemap(tiles.createTilemap(
             hex`1000100000000000000000000000000000000000000000000000000000000000000000000101010101000001010101010101000000000000010000000000010000010000000000000100000000000000000101010000000001000001000000000001000001010000010101010101000000010000000000000000010000010000000100000000000000000100000100000001000000000101000001000001000001010000000001000000000000010000000100000000010000000000000100000001000000000101010101010101000000010000000000000100000000010000000000000000000000000000000000000000000000000000000000000000000000000000`,
@@ -194,7 +263,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food2, function (sprite, otherSp
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `,
-            [myTiles.tile0,sprites.builtin.brick],
+            [myTiles.tile0,sprites.builtin.brick,myTiles.tile1],
             TileScale.Sixteen
         ))
     mySprite.setPosition(20, 20)
@@ -220,6 +289,56 @@ e e b e c c e e e e e c e b e e
     info.changeScoreBy(1)
     mySprite4.destroy()
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food4, function (sprite, otherSprite) {
+    info.startCountdown(20)
+    tiles.setTilemap(tiles.createTilemap(
+            hex`1000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000101010100000001010c0c010101010101000001000000000000000000000000000000010000000000000000000000000000000100000000000001010101010101010c0c00000000000000000000000000000000000000000000000000000000000000000000000000000c0c010101010101010c0c0c010000000100000001000000000000000000000c0100000000000000000000000000000001000000000000000000000000000000010101010101010c0c0c0000000000000000000000000000000000000000000000000000000000000000000000`,
+            img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`,
+            [myTiles.tile0,sprites.builtin.brick,sprites.builtin.crowd4,sprites.castle.saplingOak,sprites.builtin.crowd3,sprites.builtin.crowd8,sprites.dungeon.collectibleRedCrystal,sprites.dungeon.chestOpen,sprites.dungeon.chestClosed,sprites.dungeon.collectibleBlueCrystal,sprites.dungeon.darkGroundSouthWest0,myTiles.tile1,sprites.dungeon.hazardLava1],
+            TileScale.Sixteen
+        ))
+    mySprite.setPosition(20, 20)
+    mySprite7 = sprites.create(img`
+. . . . c c c b b b b b . . . . 
+. . c c b 4 4 4 4 4 4 b b b . . 
+. c c 4 4 4 4 4 5 4 4 4 4 b c . 
+. e 4 4 4 4 4 4 4 4 4 5 4 4 e . 
+e b 4 5 4 4 5 4 4 4 4 4 4 4 b c 
+e b 4 4 4 4 4 4 4 4 4 4 5 4 4 e 
+e b b 4 4 4 4 4 4 4 4 4 4 4 b e 
+. e b 4 4 4 4 4 5 4 4 4 4 b e . 
+8 7 e e b 4 4 4 4 4 4 b e e 6 8 
+8 7 2 e e e e e e e e e e 2 7 8 
+e 6 6 2 2 2 2 2 2 2 2 2 2 6 c e 
+e c 6 7 6 6 7 7 7 6 6 7 6 c c e 
+e b e 8 8 c c 8 8 c c c 8 e b e 
+e e b e c c e e e e e c e b e e 
+. e e b b 4 4 4 4 4 4 4 4 e e . 
+. . . c c c c c e e e e e . . . 
+`, SpriteKind.Food5)
+    mySprite7.setPosition(200, 200)
+    info.changeScoreBy(1)
+    mySprite6.destroy()
+})
+let mySprite7: Sprite = null
+let mySprite8: Sprite = null
 let mySprite4: Sprite = null
 let mySprite3: Sprite = null
 let mySprite5: Sprite = null
@@ -277,7 +396,7 @@ tiles.setTilemap(tiles.createTilemap(
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `,
-            [myTiles.tile0,sprites.builtin.brick,sprites.castle.shrub,sprites.builtin.crowd8,sprites.dungeon.buttonPink,sprites.builtin.coral5,sprites.builtin.oceanDepths0,sprites.builtin.coral0],
+            [myTiles.tile0,sprites.builtin.brick,sprites.castle.shrub,sprites.builtin.crowd8,sprites.dungeon.buttonPink,sprites.builtin.coral5,sprites.builtin.oceanDepths0,sprites.builtin.coral0,myTiles.tile1],
             TileScale.Sixteen
         ))
 info.setLife(3)
